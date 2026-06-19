@@ -28,17 +28,29 @@ function getOnlineCount() {
 }
 
 function findMatch(socket, interests) {
-  // Try to find someone with common interest
+  const hasInterests = interests && interests.length > 0;
   let bestIdx = -1;
   let bestScore = -1;
 
   for (let i = 0; i < waitingUsers.length; i++) {
     const w = waitingUsers[i];
     if (w.socketId === socket.id) continue;
+
+    const wHasInterests = w.interests && w.interests.length > 0;
     const common = interests.filter(x => w.interests.includes(x));
-    if (common.length > bestScore) {
-      bestScore = common.length;
+
+    if (hasInterests || wHasInterests) {
+      // At least one side specified interests -> REQUIRE a common interest
+      if (common.length === 0) continue;
+      if (common.length > bestScore) {
+        bestScore = common.length;
+        bestIdx = i;
+      }
+    } else {
+      // Neither side has interests -> instant random match, any waiting user works
       bestIdx = i;
+      bestScore = 0;
+      break;
     }
   }
 
