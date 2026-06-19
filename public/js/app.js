@@ -1,4 +1,10 @@
-const socket = io();
+const socket = io({
+  reconnection: true,
+  reconnectionAttempts: Infinity,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 5000,
+  timeout: 20000,
+});
 
 // ===== STATE =====
 let userInterests = [];
@@ -110,7 +116,10 @@ function addMsg(text, type) {
 function setInputEnabled(enabled) {
   msgInput.disabled = !enabled;
   sendBtn.disabled = !enabled;
-  if (enabled) msgInput.focus();
+  // Mobile browsers block auto-focus (keyboard won't open) unless
+  // it happens right after a real user tap/click. So we don't force
+  // focus() here on mobile — user taps the box and keyboard opens normally.
+  // We just make sure it's NOT disabled, which was the real blocker before.
 }
 
 function setTypingIndicator(show) {

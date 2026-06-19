@@ -40,6 +40,7 @@ h1, h2, h3, .logo-text, .find-title, .stranger-name {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   padding: 2rem 1rem;
   gap: 1.6rem;
   position: relative;
@@ -98,7 +99,7 @@ h1, h2, h3, .logo-text, .find-title, .stranger-name {
   padding: 0.6rem 0.9rem;
   color: var(--text);
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+  font-size: 16px;
   outline: none;
   transition: border-color 0.2s;
 }
@@ -214,6 +215,7 @@ h1, h2, h3, .logo-text, .find-title, .stranger-name {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: 100dvh;
   gap: 1.4rem;
   padding: 2rem;
 }
@@ -265,6 +267,7 @@ h1, h2, h3, .logo-text, .find-title, .stranger-name {
 #screen-chat {
   flex-direction: column;
   height: 100vh;
+  height: 100dvh;
   max-width: 720px;
   margin: 0 auto;
   width: 100%;
@@ -415,7 +418,7 @@ h1, h2, h3, .logo-text, .find-title, .stranger-name {
   padding: 0.65rem 1rem;
   color: var(--text);
   font-family: 'Inter', sans-serif;
-  font-size: 0.92rem;
+  font-size: 16px;
   outline: none;
   resize: none;
   max-height: 120px;

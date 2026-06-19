@@ -11,6 +11,12 @@ const io = new Server(server, {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Catch-all: serve index.html for any route that isn't a static file
+// (prevents "Not Found" errors on reload, deep links, etc.)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // --- State ---
 // waitingUsers: array of { socketId, interests[] }
 // pairs: Map socketId -> partnerId
